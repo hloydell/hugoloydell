@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
   <meta name="color-scheme" content="dark">
-  <title>Hugo - An Architect</title>
-  <meta name="description" content="Hugo - An Architect. For enquiries contact hugo@hugoloydell.com">
+  <title>I'm Hugo - An architect and teacher</title>
+  <meta name="description" content="I'm Hugo - An architect and teacher. For enquiries contact hugo@hugoloydell.com">
   <style>
     @font-face {
       font-family: "Fixedsys Excelsior Web";
@@ -75,12 +75,188 @@
       outline: 2px solid var(--text);
       outline-offset: 0.15em;
     }
+
+    /* Image reel: one slide at a time, full width, blurred until loaded */
+    .reel {
+      margin-top: 2rem;
+    }
+
+    .reel-frame {
+      position: relative;
+      overflow: hidden;
+      background: #000000;
+      aspect-ratio: var(--ar, 16 / 9);
+      transition: aspect-ratio 0.9s ease;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      opacity: 0;
+      visibility: hidden;
+      filter: blur(24px);
+      transition: opacity 0.9s ease, filter 0.9s ease, visibility 0s linear 0.9s;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      filter: none;
+      transition: opacity 0.9s ease, filter 0.9s ease, visibility 0s;
+    }
+
+    .slide img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Tiny preview, enlarged and blurred, shown until the full GIF arrives */
+    .ph {
+      filter: blur(16px);
+      transform: scale(1.15);
+    }
+
+    .full {
+      opacity: 0;
+      filter: blur(20px);
+      transition: opacity 0.9s ease, filter 0.9s ease;
+    }
+
+    .slide.is-loaded .full {
+      opacity: 1;
+      filter: none;
+    }
+
+    .slide.is-loaded .ph {
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+
+    /* Reduced motion: no cycling or fades; slides stack and sit still */
+    .reel.static .reel-frame {
+      display: grid;
+      gap: 1rem;
+      overflow: visible;
+      aspect-ratio: auto;
+      background: none;
+      transition: none;
+    }
+
+    .reel.static .slide {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: var(--ar);
+      background: #000000;
+      opacity: 1;
+      visibility: visible;
+      filter: none;
+      transition: none;
+    }
+
+    .reel.static .full,
+    .reel.static .ph {
+      transition: none;
+    }
   </style>
 </head>
 <body>
   <main>
     <h1>I'm Hugo - An architect and teacher</h1>
     <p>For enquiries contact <a href="mailto:hugo@hugoloydell.com">hugo@hugoloydell.com</a></p>
+
+    <section class="reel" aria-label="Images" hidden>
+      <div class="reel-frame">
+        <figure class="slide" style="--ar: 640 / 360" data-dwell="13500">
+          <img class="ph" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAASACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDza1g+0TpGZEjDEDe5wBmr8+nWFtKYrm/mjcdvsh/qwrNY4jVR35Nbeka48Vq9ldXG2PGYnkiEqxn0IYH5foM0gH2nhqLUbV5tO1JZfLzvDwMoTAJyxGcDjqawp4jE+M5U8q2MZHrXU3GsXw0R7eS9s4hvLqbXb++GPu7VACjr1GT6cGuavrhbq7eZIkiVsYRQAB+VCGQN940lFFMQUUUUAf/Z" alt="" aria-hidden="true">
+          <img class="full" data-src="2023_Eye_tracking_30.gif" alt="Render of a white head-mounted eye-tracking headset with a front camera and two eye cameras">
+        </figure>
+        <figure class="slide" style="--ar: 1440 / 1080" data-dwell="9000">
+          <img class="ph" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAYACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD0t3SNdzsFHqTVS4vCUAtF85jx8pwB9T2/nVzYu7dgZ9aR8BTx1/WgCrG0yjEhQOeykmraA7Rk84rOmd0yFgIP8TsOB+dXrf8A1CnDDIz83WgCSkbpx17UUUAV5rcuUAxtU5yfX1qdchQDyfWiigD/2Q==" alt="" aria-hidden="true">
+          <img class="full" data-src="2022_Defining_the_architectural_foveal_large.gif" alt="Black gaze-path lines traced over a faint axonometric drawing of a building">
+        </figure>
+        <figure class="slide" style="--ar: 640 / 360" data-dwell="8100">
+          <img class="ph" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAASACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCGXw5E+y2ifIjHzE9M1PbeDLKU/vJvm9BV8K9mrpdRur+o5z9KxrYajNr8YjWVLbOclScj3pAlc0bjwRbpEfKAbiuR1XSX02cEEjB+Vu4r0SGe8gfayN5OcfN/OsvxVbrc2ZZQNw5BFAjf1cAsmQDwetQWaqAMKB+FFFAF5wDDyBWBqv8Ax7SDtiiigD//2Q==" alt="" aria-hidden="true">
+          <img class="full" data-src="2023_Reframing_florence.gif" alt="Close-up of an eye with a wireframe eyeball model and gaze line overlaid">
+        </figure>
+      </div>
+    </section>
   </main>
+
+  <script>
+    (() => {
+      const reel = document.querySelector('.reel');
+      if (!reel) return;
+
+      const frame = reel.querySelector('.reel-frame');
+      const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const items = [...reel.querySelectorAll('.slide')].map((el) => ({
+        el,
+        img: el.querySelector('.full'),
+        ready: false,
+        failed: false,
+        dwell: Number(el.dataset.dwell) || 8000
+      }));
+
+      let current = -1;
+      let timer = null;
+
+      reel.hidden = false;
+      if (still) reel.classList.add('static');
+
+      const live = () => items.filter((it) => !it.failed);
+
+      function schedule() {
+        clearTimeout(timer);
+        if (still || live().length < 2) return;
+        timer = setTimeout(advance, items[current].dwell);
+      }
+
+      function show(i) {
+        current = i;
+        frame.style.setProperty('--ar', items[i].el.style.getPropertyValue('--ar'));
+        void frame.offsetWidth; // commit the starting state so the transition runs
+        items.forEach((it, n) => it.el.classList.toggle('active', n === i));
+        if (items[i].ready) schedule(); else clearTimeout(timer);
+      }
+
+      function advance() {
+        for (let step = 1; step <= items.length; step++) {
+          const n = (current + step) % items.length;
+          if (!items[n].failed) { show(n); return; }
+        }
+      }
+
+      // Load one GIF at a time so the first slide gets the full connection
+      function load(i) {
+        if (i >= items.length) return;
+        const it = items[i];
+
+        it.img.addEventListener('load', () => {
+          it.ready = true;
+          it.el.classList.add('is-loaded');
+          if (i === current) schedule();
+          load(i + 1);
+        }, { once: true });
+
+        it.img.addEventListener('error', () => {
+          it.failed = true;
+          it.el.hidden = true;
+          if (!live().length) { reel.hidden = true; return; }
+          if (i === current) advance();
+          load(i + 1);
+        }, { once: true });
+
+        it.img.src = it.img.dataset.src;
+      }
+
+      if (!still) show(0);
+      load(0);
+    })();
+  </script>
 </body>
 </html>
